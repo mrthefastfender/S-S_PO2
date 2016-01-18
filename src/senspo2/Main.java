@@ -9,7 +9,7 @@ package senspo2;
  *
  * @author Sven
  */
-public class SenSpo2 {
+public class Main {
 
     /**
      * @param args the command line arguments
