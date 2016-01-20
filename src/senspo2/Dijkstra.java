@@ -13,6 +13,8 @@ public class Dijkstra {
     private double[] distTo;          // distTo[v] = distance  of shortest s->v path
     private DirectedEdge[] edgeTo;    // edgeTo[v] = last edge on shortest s->v path
     private IndexMinPQ<Double> pq;    // priority queue of vertices
+    private int numberOfSearched;
+    private int numberOfTilesOfSP;
 
     /**
      * Computes a shortest paths tree from <tt>s</tt> to every other vertex in
@@ -49,6 +51,7 @@ public class Dijkstra {
 
     // relax edge e and update pq if changed
     private void relax(DirectedEdge e) {
+        numberOfSearched++;
         int v = e.from(), w = e.to();
         if (distTo[w] > distTo[v] + e.weight()) {
             distTo[w] = distTo[v] + e.weight();
@@ -89,6 +92,7 @@ public class Dijkstra {
         Stack<DirectedEdge> path = new Stack<DirectedEdge>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
             path.push(e);
+            numberOfTilesOfSP++;
         }
         return path;
     }
@@ -143,5 +147,13 @@ public class Dijkstra {
             }
         }
         return true;
+    }
+    
+    public int getNumberOfSearched() {
+        return numberOfSearched;
+    }
+    
+    public int getNumberOfTilesOfSP() {
+        return numberOfTilesOfSP;
     }
  }
